@@ -1,21 +1,27 @@
 
 class UnionFindDS(object):
     def __init__(self, n: int) -> None:
-        self.ids = [identifier for identifier in range(n)]
+        self.array = [elem for elem in range(n)]
 
     def __str__(self):
-        nodes = [node for node in range(len(self.ids))]
-        return f"Nodes-Indexes:\n{nodes}\n{self.ids}"
+        return f"Nodes: {[i for i in range(len(self.array))]}\nIds:   {self.array}\n"
 
     def connected(self, p: int, q: int) -> bool:
-        return self.ids[p] == self.ids[q]
+        """
+        Check if P and Q have the same id
+        """
+        return self.array[p] == self.array[q]
 
     def union(self, p: int, q: int) -> None:
-        idp = self.ids[p]
-        idq = self.ids[q]
-        for identifier in self.ids:
-            if identifier == idp:
-                self.ids[p] = idq
+        """
+        To merge components containing p and q, change all entries whose ID equals id[p] to id[q]
+        """
+        pid = self.array[p]
+        qid = self.array[q]
+
+        for elem in self.array:
+            if elem == pid:
+                self.array[self.array.index(elem)] = qid
 
 
 if __name__ == "__main__":
@@ -26,3 +32,8 @@ if __name__ == "__main__":
     print(uf)
     uf.union(9, 2)
     print(uf)
+    uf.union(3, 4)
+    print(uf)
+    uf.union(9, 4)
+    print(uf)
+
