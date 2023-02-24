@@ -16,6 +16,7 @@ class UnionFindDS(object):
         """
         To merge components containing p and q, change all entries whose ID equals id[p] to id[q]
         """
+        print(f"Union: {p}, {q}")
         pid = self.ids[p]
         qid = self.ids[q]
 
@@ -25,15 +26,18 @@ class UnionFindDS(object):
 
 
 if __name__ == "__main__":
-    N = 10
-    uf = UnionFindDS(N)
-    print(uf.connected(1, 2))
-    uf.union(1, 2)
-    print(uf)
-    uf.union(9, 2)
-    print(uf)
-    uf.union(3, 4)
-    print(uf)
-    uf.union(9, 4)
-    print(uf)
+    uf = UnionFindDS(10)
+    for union in [
+        (1, 2),
+        (6, 2),
+        (7, 2),
+        (1, 9),
+        (0, 9),
+        (0, 5),
+        (3, 4),
+        (3, 8),
+        (0, 8)
+    ]:
+        uf.union(*union)
+        print(uf)
 

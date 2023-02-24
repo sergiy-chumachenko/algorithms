@@ -1,4 +1,4 @@
-class UnionFindDS:
+class UnionFind:
     def __init__(self, n: int) -> None:
         self.ids = [identifier for identifier in range(n)]
 
@@ -14,6 +14,7 @@ class UnionFindDS:
 
     def union(self, p: int, q: int) -> None:
         """To merge components containing p and q set the id of p's root to the id of q's root"""
+        print(f"Union: {p}, {q}")
         i = self.__root(p)
         j = self.__root(q)
         self.ids[i] = j
@@ -23,14 +24,17 @@ class UnionFindDS:
 
 
 if __name__ == "__main__":
-    N = 10
-    uf = UnionFindDS(N)
-    print(uf.connected(1, 2))
-    uf.union(1, 2)
-    print(uf)
-    uf.union(9, 2)
-    print(uf)
-    uf.union(3, 4)
-    print(uf)
-    uf.union(9, 4)
-    print(uf)
+    uf = UnionFind(10)
+    for union in [
+        (1, 2),
+        (6, 2),
+        (7, 2),
+        (1, 9),
+        (0, 9),
+        (0, 5),
+        (3, 4),
+        (3, 8),
+        (0, 8)
+    ]:
+        uf.union(*union)
+        print(uf)
